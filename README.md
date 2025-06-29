@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎮 USB Gamepad Touchpad Visualizer
 
-## Getting Started
+A simple and powerful Node.js project that allows real-time reading and visualization of the **touchpad input from PS4 and PS5 controllers** directly in your browser.
 
-First, run the development server:
+This tool is perfect for testing, debugging, or showcasing the functionality of your controller’s touchpad on a web interface.
+
+---
+
+## 🚀 Features
+
+- 🔌 Connects via USB (no Bluetooth required)
+- 🎮 Supports both DualShock 4 (PS4) and DualSense (PS5) controllers
+- 📡 Real-time streaming of touchpad data via WebSocket
+- 🖥️ Web interface that shows touch activity as visual interaction
+
+---
+
+## 🧰 Technologies Used
+
+- Node.js
+- WebSocket (ws)
+- node-hid
+- HTML + JavaScript (frontend)
+- NextJs
+
+---
+
+## 📦 Requirements
+
+- Node.js (v16 or later)
+- A PS4 or PS5 controller connected via USB
+- Chrome or any modern browser
+
+---
+
+## 🛠 Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/abolfazl8321/AtlasGamePad.git
+cd usb-touchpad-viewer
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ▶️ Run the Project
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+node src/server/touchpad.js
+```
 
-## Learn More
+Then open the frontend (usually `index.html`) in your browser and move your finger on the controller’s touchpad.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🧪 Tested Devices
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- ✅ DualShock 4 (PS4)
+- ✅ DualSense (PS5)
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🤝 Contributions
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Pull requests are welcome! Feel free to fork and enhance the visual experience or expand support.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
