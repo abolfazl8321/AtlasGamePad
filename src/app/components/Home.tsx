@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 'use client';
 
 import { Badge } from '@/components/ui/badge';
@@ -163,8 +164,8 @@ export default function Home() {
           <div className="mt-6 text-center">
             <span className="inline-block px-4 py-2 rounded-lg bg-blue-900/60 text-blue-200 text-base font-semibold shadow">
               {controllerType === 'ps4'
-                ? 'دسته PS4 شناسایی شد. برای شروع تست کامل، روی دکمه "شروع تست کامل" کلیک کنید.'
-                : 'دسته PS5 شناسایی شد. برای شروع تست کامل، روی دکمه "شروع تست کامل" کلیک کنید.'}
+                ? 'دسته PS4 شناسایی شد. برای شروع تست کامل، روی دکمه &quot;شروع تست کامل&quot; کلیک کنید.'
+                : 'دسته PS5 شناسایی شد. برای شروع تست کامل، روی دکمه &quot;شروع تست کامل&quot; کلیک کنید.'}
             </span>
           </div>
         </div>
@@ -369,14 +370,15 @@ export default function Home() {
     const area = document.getElementById("touchpad-area");
     if (!area) return;
 
-    const handlePointer = (e: any) => {
+    // نوع رویداد را دقیق‌تر تعریف کن
+    const handlePointer = (e: PointerEvent | MouseEvent | TouchEvent) => {
       const rect = area.getBoundingClientRect();
       let x = 0, y = 0;
-      if (e.touches && e.touches.length > 0) {
-        const t = e.touches[0];
+      if ('touches' in e && e.touches && e.touches.length > 0) {
+        const t = (e as TouchEvent).touches[0];
         x = (t.clientX - rect.left) / rect.width;
         y = (t.clientY - rect.top) / rect.height;
-      } else if (typeof e.clientX === "number" && typeof e.clientY === "number") {
+      } else if ('clientX' in e && typeof e.clientX === "number" && typeof e.clientY === "number") {
         x = (e.clientX - rect.left) / rect.width;
         y = (e.clientY - rect.top) / rect.height;
       }
@@ -390,34 +392,34 @@ export default function Home() {
       setTouchpadData?.(prev => prev ? { ...prev, active: false } : null);
     };
 
-    area.addEventListener("pointerdown", handlePointer);
-    area.addEventListener("pointermove", handlePointer);
-    area.addEventListener("pointerup", handlePointerUp);
-    area.addEventListener("pointerleave", handlePointerUp);
+    area.addEventListener("pointerdown", handlePointer as EventListener);
+    area.addEventListener("pointermove", handlePointer as EventListener);
+    area.addEventListener("pointerup", handlePointerUp as EventListener);
+    area.addEventListener("pointerleave", handlePointerUp as EventListener);
 
-    area.addEventListener("mousedown", handlePointer);
-    area.addEventListener("mousemove", handlePointer);
-    area.addEventListener("mouseup", handlePointerUp);
-    area.addEventListener("mouseleave", handlePointerUp);
+    area.addEventListener("mousedown", handlePointer as EventListener);
+    area.addEventListener("mousemove", handlePointer as EventListener);
+    area.addEventListener("mouseup", handlePointerUp as EventListener);
+    area.addEventListener("mouseleave", handlePointerUp as EventListener);
 
-    area.addEventListener("touchstart", handlePointer, { passive: false });
-    area.addEventListener("touchmove", handlePointer, { passive: false });
-    area.addEventListener("touchend", handlePointerUp, { passive: false });
+    area.addEventListener("touchstart", handlePointer as EventListener, { passive: false });
+    area.addEventListener("touchmove", handlePointer as EventListener, { passive: false });
+    area.addEventListener("touchend", handlePointerUp as EventListener, { passive: false });
 
     return () => {
-      area.removeEventListener("pointerdown", handlePointer);
-      area.removeEventListener("pointermove", handlePointer);
-      area.removeEventListener("pointerup", handlePointerUp);
-      area.removeEventListener("pointerleave", handlePointerUp);
+      area.removeEventListener("pointerdown", handlePointer as EventListener);
+      area.removeEventListener("pointermove", handlePointer as EventListener);
+      area.removeEventListener("pointerup", handlePointerUp as EventListener);
+      area.removeEventListener("pointerleave", handlePointerUp as EventListener);
 
-      area.removeEventListener("mousedown", handlePointer);
-      area.removeEventListener("mousemove", handlePointer);
-      area.removeEventListener("mouseup", handlePointerUp);
-      area.removeEventListener("mouseleave", handlePointerUp);
+      area.removeEventListener("mousedown", handlePointer as EventListener);
+      area.removeEventListener("mousemove", handlePointer as EventListener);
+      area.removeEventListener("mouseup", handlePointerUp as EventListener);
+      area.removeEventListener("mouseleave", handlePointerUp as EventListener);
 
-      area.removeEventListener("touchstart", handlePointer);
-      area.removeEventListener("touchmove", handlePointer);
-      area.removeEventListener("touchend", handlePointerUp);
+      area.removeEventListener("touchstart", handlePointer as EventListener);
+      area.removeEventListener("touchmove", handlePointer as EventListener);
+      area.removeEventListener("touchend", handlePointerUp as EventListener);
     };
   }, [showFullTest, setTouchpadData]);
 
